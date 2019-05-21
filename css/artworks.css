@@ -1,0 +1,333 @@
+
+/* Global Variables with our values */
+:root {
+    --main-color:#FFED00;
+	--secondary-color:#707070;	
+	--color-white:#fff;
+	--color-black:#000;
+	--fonts-montserrat:'Montserrat', sans-serif;
+}
+
+html, body{
+    margin: 0px;
+    font-family: var(--fonts-montserrat);
+}
+
+/* The Style for the Logo Image */
+  #logo {
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+      margin-top: -45px;
+  }
+  /* The background of the Logo */
+  .logo-background{
+      height:35px;
+      background-color:yellow;
+      margin-top: 20px;      
+  }
+
+  /* The STYLE for the Menu Mobile Icon */
+  .menuIcon {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 26px;
+    height: 23px;
+    width: 27px;
+    z-index: 12;
+}
+/* Icon Bars */
+.icon-bars {
+    background: var(--secondary-color);
+    position: absolute;
+    left: 1px;
+    top: 45%;
+    height: 2px;
+    width: 20px;
+    transition: 0.4s;
+}
+.icon-bars::before {
+    background: var(--secondary-color);
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -8px;
+    height: 2px;
+    width: 20px;
+    transition: 0.3s width 0.4s;
+}
+.icon-bars::after {
+    margin-top: 0px;
+    background: var(--secondary-color);
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 2px;
+    width: 20px;
+    transition: 0.3s width 0.4s;
+}
+/* Bars Shadows */
+.icon-bars.overlay {
+    background: var(--secondary-color);
+    width: 20px;
+    animation: middleBar 3s infinite 0.5s;
+}
+@keyframes middleBar {
+    0% {
+        width: 0px
+    }
+    50% {
+        width: 20px
+    }
+    100% {
+        width: 0px
+    }
+}
+.icon-bars.overlay::before {
+    background: var(--secondary-color);
+    width: 10px;
+    animation: topBar 3s infinite 0.2s;
+}
+@keyframes topBar {
+    0% {
+        width: 0px
+    }
+    50% {
+        width: 10px
+    }
+    100% {
+        width: 0px
+    }
+}
+.icon-bars.overlay::after {
+    background: var(--secondary-color);
+    width: 15px;
+    animation: bottomBar 3s infinite 1s;
+}
+@keyframes bottomBar {
+    0% {
+        width: 0px
+    }
+    50% {
+        width: 15px
+    }
+    100% {
+        width: 0px
+    }
+}
+
+/* The Style for the Desktop Menu */
+
+#navbar {
+    display:block;
+	position: relative;
+	top: 0;
+	height: 60px;
+	line-height: 1px;
+	width: 100vw;
+	z-index: 10;
+    font-weight: bold;
+    padding-inline-start:0;
+    margin-top:0;
+}
+
+#navbar li {
+	display: inline-block;
+}
+
+#navbar ul {
+	padding-top: 10px;
+	padding-right: 50px;
+	display: inline-block;
+	list-style: none;
+	text-align: center;
+	transition: transform 0.5s ease-out;
+}
+
+#navbar li a {
+	color: var(--secondary-color);
+	display: block;
+	font-size: 12px;
+	letter-spacing: 1px;
+	margin: 0 10px;
+	padding: 0 4px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+    transition: all 0.5s ease;
+    padding-top:10px;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+	color: var(--secondary-color);
+	transition: all 1s ease;
+}
+
+/* Animated Bottom Line under the menu icons */
+#navbar li a:before,
+#navbar li a:after {
+	content: '';
+	position: absolute;
+	width: 0%;
+	height: 2px;
+	bottom: -12px;
+	background: var(--main-color);
+}
+
+#navbar li a:before {
+	left: 0;
+	transition: 0.5s;
+}
+
+#navbar li a:after {
+	background: var(--main-color);
+	right: 0;
+}
+
+#navbar li a:hover:before,
+#navbar li a.active:before  {
+	background: var(--main-color);
+	width: 100%;
+	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+#navbar li a:hover:after,
+#navbar li a.active:after {
+	background: transparent;
+	width: 100%;
+}
+
+
+/* The Style for the menu items position */
+.menu-left{
+    float:left;
+}
+.menu-right {
+    float:right;
+}
+
+
+/* Hide this when it's Desktop */
+.menuIcon,
+.overlay-menu {
+    display:none;
+}
+
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+
+    #menu-mobile {
+        padding-bottom: 10px;
+    }
+
+       /* Hide the Desktop Menu */
+    #navbar{
+        display:none;
+    }
+
+    /* Toggle Menu Icon */
+.menuIcon {
+    position: fixed;
+    display: block;
+}
+.menuIcon.toggle .icon-bars {
+    top: 5px;
+    transform: translate3d(0, 5px, 0) rotate(135deg);
+    transition-delay: 0.1s;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.menuIcon.toggle .icon-bars::before {
+    top: 0;
+    transition-delay: 0.1s;
+    opacity: 0;
+}
+.menuIcon.toggle .icon-bars::after {
+    top: 10px;
+    transform: translate3d(0, -10px, 0) rotate(-270deg);
+    transition-delay: 0.1s;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.menuIcon.toggle .icon-bars.overlay {
+    width: 20px;
+    opacity: 0;
+    transition: all 0s ease 0s;
+}
+
+    /*======= Responsive Mobile Menu========*/
+.overlay-menu {
+    display:block;
+	background: var(--transparent-main-color);
+	color: var(--secondary-color);
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	padding-left: 30%;
+	padding-top: 20%;
+	transform: translateX(-100%);
+	width: 100%;
+	height: 100%;
+	transition: transform 0.2s ease-out;
+	z-index: 3;
+}
+
+.overlay-menu ul,
+.overlay-menu li {
+	display: block;
+	position: relative;
+	width: auto;
+}
+
+.overlay-menu li a {
+	display: block;
+	font-size: 16px;
+	padding: 10px 0;
+	text-align: left;
+	text-transform: uppercase;
+	transition: color 0.3s ease;
+	text-decoration: none;
+	color: var(--color-black);
+}
+
+    /* Animated Bottom Line */
+
+.overlay-menu li a:before,
+.overlay-menu li a:after {
+	content: '';
+	position: absolute;
+	width: 0%;
+	height: 2px;
+	bottom: -1px;
+	background: var(--main-color);
+}
+
+.overlay-menu li a:before {
+	left: 0;
+	transition: 0.5s;
+}
+
+.overlay-menu li a:after {
+	background: var(--main-color);
+	right: 0;
+}
+
+.overlay-menu li a.aboutme:hover:before,
+.overlay-menu li a.aboutme.active:before {
+	background: var(--main-color);
+	width: 15%;
+	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.overlay-menu li a:hover:after,
+.overlay-menu li a.active:after {
+	background: transparent;
+	width: 100%;
+	/* transition: 0s; */
+}
+
+
+	
+}

@@ -6,17 +6,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <Title>Huset-Kbh | Events in Denmark </Title>
-    <meta name="description" content="This is the meta description for the Huset's-KBH Website.">
-    <meta name="title" content="This is the meta title for the Huset's-KBH Website.">
-    <link href="css/huset.css" rel="stylesheet">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="title" content="">
+    <link href="css/artworks.css" rel="stylesheet">
     <link rel="icon" type="image/ico" href="images/favicon.ico" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">   
 </head>
 
 <!-- The body of the Home Page -->
@@ -28,66 +26,42 @@
         <!-- The header area -->
         <header id="header">
 
-            <nav class="nav-container">
-                <div class="topnav" id="myTopnav">
-                    <!-- The Logo -->
-                    <a href="index.html" class="active"><img src="images/logo-huset.png" id="logo"
-                            alt="The logo of Huset-Kbh"></a>
-                    <!-- The Menu -->
-                    <div class="link">
-                        <a href="#news" class="first-menu">Events</a>
+            <!-- The Yellow Background Behind the Logo -->
+           <div class="logo-background">              
+           </div>
 
-                        <div class="dropdown">
-                            <button class="dropbtn">Activities
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <a href="#">Volunteering</a>
-                                <a href="#">Make Events</a>
-                            </div>
-                        </div>
+           <!-- Logo Here -->
+           <img id="logo" src="images/logo1.png" alt="The logo of the website">
 
-                        <div class="dropdown">
-                            <button class="dropbtn">About us
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <a href="#">The history of Huset</a>
-                                <a href="#">Bastard Cafe</a>
-                                <a href="#">Evoo - street kitchen</a>
-                                <a href="#">Huset biograf</a>
-                                <a href="#">Musikcafeen</a>
-                                <a href="#">Teaterhuset</a>
-                                <a href="#">Huset's Design Guide</a>
-                            </div>
-                        </div>
+            <!-- The Menu -->
+                <ul id="navbar">
+                    <li class="menu-left"><a href="#home">PAINTINGS</a></li>
+                        <li class="menu-left"><a href="#news">DRAWINGS</a></li>
+                        <li class="menu-right"><a href="#contact">CONTACT</a></li>
+                        <li class="menu-right"><a href="#about">ABOUT ME</a></li>
+                      </ul>
 
-
-                        <div class="dropdown">
-                            <button class="dropbtn">Contact
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <a href="#">Info</a>
-                                <a href="#">Opening Hours</a>
-                                <a href="#">FAQ</a>
-                                <a href="#">Job & Interships</a>
-                                <a href="#">Board & Press</a>
-                            </div>
-                        </div>
-
-                        <a id="search">
-                            <form>
-                                <input class="input" type="text" name="search" placeholder="Search..">
-                            </form>
-                        </a>
-                    </div>
-                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-
-                </div>
-            </nav>
+                       <!-- Menu Icon -->
+        <div class="menuIcon">
+                <span class="icon icon-bars"></span>
+                <span class="icon icon-bars overlay"></span>
+            </div>
+    
+           
+     <!-- Overlay Menu -->
+     <div class="overlay-menu">
+            <ul id="menu-mobile">
+                <!-- The Menu -->
+                <li><a href="#scene1">PAINTINGS</a></li>
+                <li><a href="#scene2">DRAWINGS</a></li>
+                <li><a href="#scene3">CONTACT</a></li>
+                <li><a href="#scene4">ABOUT ME</a></li>
+            </ul>
+        </div>
 
         </header>
+
+        
 
         <main>
             <!-- Slideshow container - example here: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
@@ -111,6 +85,7 @@
         <div class="footer">
            
         </div>
+
         <!-- END OF FOOTER -->
     </div>
 
@@ -133,11 +108,12 @@
         
     </template>
 
-  
-    <script>
+   <script src="js/menu.js"></script>
 
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
-          
+            
+                      
         });
     </script>
 
