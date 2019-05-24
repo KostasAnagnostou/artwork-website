@@ -112,7 +112,41 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+
+            // The json end points for the API 
+            const ARTWORK_TYPES_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artwork_types";
+            const ARTWORKS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks";
+            const BUSINESS_INFO_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/business_info";
+            const VIDEOS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/videos";
+            const EXHIBITION_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/exhibition";
+
+          // Make the Asynchronous Calls to fetch the data
+          // From the JSON API
+           loadData(ARTWORK_TYPES_ENDPOINT);
+           loadData(ARTWORKS_ENDPOINT);
+           loadData(BUSINESS_INFO_ENDPOINT);
+           loadData(VIDEOS_ENDPOINT);
+           loadData(EXHIBITION_ENDPOINT);
+
+            // The Function to Fetch the json Endpoints
+            function loadData(fetchURL) {
+                fetch(fetchURL).then(e => e.json()).then(data => show(data));
+            }
             
+            // The Function to display the data 
+            // into the Home Page
+            function show(data) {
+                data.forEach(jsonObject => {
+                    
+                    // If we have data
+                    if (jsonObject) {
+                        //store the data for each event 
+                        console.log(jsonObject);                                             
+                    }
+
+                });
+            }        
+                        
                       
         });
     </script>

@@ -261,7 +261,7 @@ html, body{
 .overlay-menu {
     display:block;
 	background: var(--transparent-main-color);
-	color: var(--secondary-color);
+	color: var(--secondary-color    );
 	justify-content: center;
 	position: fixed;
 	top: 0;
