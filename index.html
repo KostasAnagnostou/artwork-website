@@ -5,8 +5,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Maryam Safa Artworks</title>
     <meta name="description" content="">
     <meta name="title" content="">
     <link href="css/artworks.css" rel="stylesheet">
@@ -14,7 +14,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
 </head>
 
 <!-- The body of the Home Page -->
@@ -27,54 +30,74 @@
         <header id="header">
 
             <!-- The Yellow Background Behind the Logo -->
-           <div class="logo-background">              
-           </div>
+            <div class="logo-background">
+            </div>
 
-           <!-- Logo Here -->
-           <img id="logo" src="images/logo1.png" alt="The logo of the website">
+            <!-- Logo Here -->
+            <img id="logo" src="images/logo1.png" alt="The logo of the website">
 
-            <!-- The Menu -->
-                <ul id="navbar">
-                    <li class="menu-left"><a href="#home">PAINTINGS</a></li>
-                        <li class="menu-left"><a href="#news">DRAWINGS</a></li>
-                        <li class="menu-right"><a href="#contact">CONTACT</a></li>
-                        <li class="menu-right"><a href="#about">ABOUT ME</a></li>
-                      </ul>
+            <!-- The Desktop Menu -->
+            <ul id="navbar">
+                <li class="menu-left"><a href="paintings.html">PAINTINGS</a></li>
+                <li class="menu-left"><a href="drawings.html">DRAWINGS</a></li>
+                <li class="menu-right"><a href="contact.html">CONTACT</a></li>
+                <li class="menu-right"><a href="about.html">ABOUT ME</a></li>
+            </ul>
 
-                       <!-- Menu Icon -->
-        <div class="menuIcon">
+            <!-- Menu Icon -->
+            <div class="menuIcon">
                 <span class="icon icon-bars"></span>
                 <span class="icon icon-bars overlay"></span>
             </div>
-    
-           
-     <!-- Overlay Menu -->
-     <div class="overlay-menu">
-            <ul id="menu-mobile">
-                <!-- The Menu -->
-                <li><a href="#scene1">PAINTINGS</a></li>
-                <li><a href="#scene2">DRAWINGS</a></li>
-                <li><a href="#scene3">CONTACT</a></li>
-                <li><a href="#scene4">ABOUT ME</a></li>
-            </ul>
-        </div>
+
+
+            <!-- Overlay Menu (The Mobile Menu)-->
+            <div class="overlay-menu">
+                <ul id="menu-mobile">
+                    <!-- The Menu -->
+                    <li><a href="paintings.html">PAINTINGS</a></li>
+                    <li><a href="drawings.html">DRAWINGS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="about.html">ABOUT ME</a></li>
+                </ul>
+            </div>
 
         </header>
 
-        
+
 
         <main>
             <!-- Slideshow container - example here: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
-            <!-- <section class="slideshow-container" id="carousel"> -->
+            <section class="slideshow-container" id="carousel">
                 <!-- The Carousel Item's Dynamically here -->
-            <!-- </section> -->
+            </section>
 
 
             <!-- The dots/circles -->
-            <!-- <div id="dots" class="border-line-bottom"> -->
+            <div id="dots" class="border-line-bottom">
                 <!-- The Dot's Dynamically here -->
-            <!-- </div> -->
-            
+            </div>
+
+            <!-- The section title (Featured Artworks) -->
+            <h2 class="section-title">Featured Artworks
+                <hr class="yellow-line">
+            </h2>
+
+            <!-- The Featured Artworks Section Here -->
+            <section id="artworks">
+                <!-- The 6 Artworks Here Dynamically -->
+            </section>
+
+            <!-- The section title (Featured Videos) -->
+            <h2 class="section-title">Featured Videos
+                <hr class="yellow-line">
+            </h2>
+
+            <!-- The Featured Artworks Section Here -->
+            <section id="videos">
+                <!-- The 6 Artworks Here Dynamically -->
+            </section>
+
         </main>
 
         <!-- The Loading Indicator -->
@@ -82,20 +105,19 @@
 
         <!-- Footer -->
 
-        <div class="footer">
-           
-        </div>
+        <footer class="footer">
+
+        </footer>
 
         <!-- END OF FOOTER -->
     </div>
 
-    <!-- The Template for the Carousel Item -->
+    <!-- The Template for the Slider Item -->
     <template id="carousel-item">
         <div class="mySlides">
-            <!-- First Picture of the Slider with Caption and a link to Style Page -->
-            <a href="#" class="event-link">
-                <img class="centered animated bounceInRight carousel-image" src="images/carousel1.jpg"
-                    alt="Carousel item">
+            <!-- First Picture of the Slider with Caption and a link to Details Page -->
+            <a href="#" class="artwork-link">
+                <img class="animated fadeIn carousel-image" src="images/carousel1.jpg" alt="Carousel item">
             </a>
             <div class="text">
                 <h2 class="carousel-title">Title</h2>
@@ -103,55 +125,211 @@
         </div>
     </template>
 
-    <!-- The template -->
-    <template id="card-event">
-        
+    <!-- The template for the Featured Artworks-->
+    <template id="featured-artwork">
+        <!-- The Main Photo of the ArtWork -->
+        <a href="#" class="artwork-link">
+            <img class="image-artwork" src="SRC.jpg" alt="">
+        </a>
     </template>
 
-   <script src="js/menu.js"></script>
+    <!-- The Template for the videos -->
+    <template id="featured-videos">
+        <!-- The Iframe to embed the youtube video-->
+        <iframe class="youtube-video" src="youtubeURL"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </template>
+
+    <script src="js/menu.js"></script>
+    <!-- jQuery 3.3.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
             // The json end points for the API 
-            const ARTWORK_TYPES_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artwork_types";
             const ARTWORKS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks";
-            const BUSINESS_INFO_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/business_info";
             const VIDEOS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/videos";
             const EXHIBITION_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/exhibition";
+           
+            // The youtube path for the embedded videos
+            const YOUTUBE_VIDEO_URL = "https://www.youtube.com/embed/";
 
-          // Make the Asynchronous Calls to fetch the data
-          // From the JSON API
-           loadData(ARTWORK_TYPES_ENDPOINT);
-           loadData(ARTWORKS_ENDPOINT);
-           loadData(BUSINESS_INFO_ENDPOINT);
-           loadData(VIDEOS_ENDPOINT);
-           loadData(EXHIBITION_ENDPOINT);
+            // The templates & containers (sections)         
+            const slider = document.querySelector("#carousel");
+            const sliderItemTemplate = document.querySelector("#carousel-item").content;
+            const sliderDots = document.querySelector("#dots");
+            const featuredArtwork = document.querySelector("#artworks");
+            const featuredArtworkTemplate = document.querySelector("#featured-artwork").content;
+            const videos = document.querySelector("#videos");
+            const videosTemplate = document.querySelector("#featured-videos").content;
+
+            // Make the Asynchronous Calls to fetch the data
+            // From the JSON API
+            loadData(ARTWORKS_ENDPOINT);
+            loadData(VIDEOS_ENDPOINT);
+            loadData(EXHIBITION_ENDPOINT);
 
             // The Function to Fetch the json Endpoints
             function loadData(fetchURL) {
                 fetch(fetchURL).then(e => e.json()).then(data => show(data));
             }
-            
+
             // The Function to display the data 
             // into the Home Page
             function show(data) {
                 data.forEach(jsonObject => {
-                    
-                    // If we have data
-                    if (jsonObject) {
-                        //store the data for each event 
-                        console.log(jsonObject);                                             
-                    }
 
+                    // If we have data, run the code
+                    if (jsonObject) {
+
+                        // If it's artworks
+                        if (jsonObject.type === "artworks") {
+
+                            // Store the data for each artwork
+                            let id = jsonObject.id;
+                            let title = jsonObject.artwork_title;
+                            let lead = jsonObject.short_description;
+                            let image = jsonObject.images[0].guid;
+                            let price = jsonObject.price;
+
+                            // if it's an artwork for the slider
+                            if (jsonObject.slider == 1) {
+
+                                // clone the template for the slider-item
+                                const clone = sliderItemTemplate.cloneNode(true);
+
+                                // get a reference from the views (Elements)
+                                const itemContainer = clone.querySelector(".mySlides");
+                                const sliderImage = clone.querySelector(".carousel-image");
+                                const sliderTitle = clone.querySelector(".carousel-title");
+                                const artworkLink = clone.querySelector(".artwork-link");
+
+                                // pass the data into the template
+                                sliderImage.src = image;
+                                sliderTitle.innerHTML = `<a href="event_page.html" class="read-more"></a> `;
+                                artworkLink.href = "event_page.html";
+
+                                // append the template (slider-item) into the DOM
+                                slider.appendChild(clone);
+                            } // code for the slider ends here
+
+
+                            // if it's an artwork for the featured artworks section
+                            if (jsonObject.featured_artworks == 1) {
+
+                                // clone the template for the featured artworks
+                                const clone = featuredArtworkTemplate.cloneNode(true);
+
+                                // get a Reference from the views (Elements)
+                                const imageFeatured = clone.querySelector(".image-artwork");
+                                const artworkLink = clone.querySelector(".artwork-link");
+
+                                // Pass the data into the views
+                                imageFeatured.src = image;
+                                artworkLink.href = "#";
+
+                                // append the artwork into the featured Artworks section
+                                featuredArtwork.appendChild(clone);
+                            }
+
+                            // Create the arrows on the Slider
+                            const carouselSlides = document.querySelectorAll(".mySlides");
+                            console.log(carouselSlides.length);
+
+                            // check if it's not 0
+                            if (carouselSlides.length > 1) {
+                                // Next & Previous Buttons on the Carousel
+                                let nextArrow = document.createElement("a");
+                                let previousArrow = document.createElement("a");
+                                nextArrow.classList.add("next");
+                                previousArrow.classList.add("prev");
+                                nextArrow.setAttribute("onclick", "plusSlides(1)");
+                                previousArrow.setAttribute("onclick", "plusSlides(-1)");
+                                nextArrow.innerHTML = "&#10095;";
+                                previousArrow.innerHTML = "&#10094;";
+                                slider.appendChild(previousArrow);
+                                slider.appendChild(nextArrow);
+
+                                // Create the dots/bullets on the slider for each artwork
+                                for (i = 0; i < carouselSlides.length; i++) {
+                                    let carouselDot = document.createElement("span");
+                                    carouselDot.classList.add("dot");
+                                    carouselDot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
+                                    sliderDots.appendChild(carouselDot);
+                                }
+
+                                // The code for the slider here from W3Schools with few changes
+                                let slideIndex = 1;
+                                showSlides(slideIndex);
+
+                                window.plusSlides = function (n) {
+                                    showSlides(slideIndex += n);
+                                }
+
+                                window.currentSlide = function (n) {
+                                    showSlides(slideIndex = n);
+                                }
+
+                                function showSlides(n) {
+                                    var j;
+                                    let slides = document.getElementsByClassName("mySlides");
+                                    let dots = document.getElementsByClassName("dot");
+                                    if (n > slides.length) { slideIndex = 1 }
+                                    if (n < 1) { slideIndex = slides.length }
+                                    for (j = 0; j < slides.length; j++) {
+                                        slides[j].style.display = "none";
+                                    }
+                                    for (j = 0; j < dots.length; j++) {
+                                        dots[j].className = dots[j].className.replace(" active", "");
+                                    }
+                                    if (typeof slides != undefined) {
+                                        slides[slideIndex - 1].style.display = "block";
+                                        dots[slideIndex - 1].className += " active";
+                                    }
+                                }
+                            }
+                        }
+
+                        // if it's a Video 
+                        if (jsonObject.type === "videos") {
+
+                            // Store the data for each video
+                            let youtubeURL = jsonObject.youtube_url;
+
+                            // We are using the URLSearchParams in order 
+                            // to take the video id (v) from the youtube url 
+                            // eg. https://www.youtube.com/watch?v=lQGDn1li7hs
+                            // More here: --> https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+                            let searchParams = new URLSearchParams(youtubeURL);
+                            let videoID = searchParams.get("https://www.youtube.com/watch?v");
+                            console.log(videoID);
+                            let videoFinalUrl = YOUTUBE_VIDEO_URL + videoID; //searchParams returns the id (v=) from the url: lQGDn1li7hs
+
+                            // clone the template for the Video
+                            const clone = videosTemplate.cloneNode(true);
+
+                            // get a Reference from the views (iframe element)
+                            const videoIframe = clone.querySelector(".youtube-video");
+
+                            // pass the video final url into the template
+                            videoIframe.src = videoFinalUrl;
+
+                            // Append the video into the Videos Section
+                            videos.appendChild(clone);
+                        }
+
+                        // if 
+                        if (jsonObject.type === "exhibition") {
+                            console.log("exhibition");
+                        }
+
+
+                    }
                 });
-            }        
-                        
-                      
+            }
         });
     </script>
-
-
 </body>
 
 </html>
