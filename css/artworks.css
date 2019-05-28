@@ -309,7 +309,7 @@ span.active, .dot:hover {
     object-position: center;
     height: 550px;
     position: relative;
-    z-index: -1;
+    z-index: 0;
 }
 
 h2.carousel-title {
@@ -330,7 +330,7 @@ h2 a.read-more {
 .yellow-line {
     background-color:var(--main-color);
     width:20%;
-    height:1px;
+    height:2px;
     border:none;
 }
 /* The Styles for the Grid */
@@ -354,13 +354,14 @@ main{
 
 footer{
     grid-area:footer-area;
+    background-color:var(--main-color);
     }
 
 /* The Grid for the Featured Artworks Section */
 #artworks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 10px;
+    padding-bottom: 20px;
 }
 
 /* The Grid for the Videos Section */
@@ -372,13 +373,14 @@ footer{
 
 /* The style for the Images for Featured Artworks */
 .image-artwork {
-    width: 350px;
+    width: 380px;
     height: 400px;
     object-fit: cover;
     object-position: center;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom:10px;
 }
 
 /* The style for the Youtube Video */
@@ -389,6 +391,50 @@ iframe {
     display:block;
     margin-left:auto;
     margin-right:auto;   
+}
+/* The Style for the Video Description */
+.video-description {
+    text-align:center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+}
+
+/* The Style for the quote on the Home Page */
+.quote {
+    text-align:center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+/* The Style for the Social Media */
+.social {
+    text-align: center;
+}
+.social ul {
+    padding-inline-start:0;
+}
+.social ul li {
+    display: inline-block;
+    padding-right: 8px;
+    color: var(--color-white);
+}
+.icon-social{
+    height:40px;
+}
+/* The Style for the Logo on the Footer */
+#footer-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.copyright {
+    padding-top:40px;
+    text-align:center;
+    font-size:15px;
 }
 
 /* The style of the links */
@@ -412,7 +458,6 @@ color:var(--color-black);
 
     /* Toggle Menu Icon */
 .menuIcon {
-    position: fixed;
     display: block;
 }
 .menuIcon.toggle .icon-bars {
@@ -441,13 +486,13 @@ color:var(--color-black);
     /*======= Responsive Mobile Menu========*/
 .overlay-menu {
     display:block;
-	background: var(--transparent-main-color);
-	color: var(--secondary-color    );
+	background: var(--color-white);
+	color: var(--secondary-color);
 	justify-content: center;
 	position: fixed;
 	top: 0;
 	padding-left: 30%;
-	padding-top: 20%;
+	margin-top: 70px;
 	transform: translateX(-100%);
 	width: 100%;
 	height: 100%;

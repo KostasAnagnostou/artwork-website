@@ -21,7 +21,6 @@
 </head>
 
 <!-- The body of the Home Page -->
-
 <body>
     <!-- The Main Grid CSS Layout for the Home Page (home-grid) -->
     <div id="home-grid">
@@ -33,8 +32,8 @@
             <div class="logo-background">
             </div>
 
-            <!-- Logo Here -->
-            <img id="logo" src="images/logo1.png" alt="The logo of the website">
+            <!-- Logo Here with a link to the Home Page-->
+            <a href="index.html"><img id="logo" src="images/logo1.png" alt="The logo of the website"></a>
 
             <!-- The Desktop Menu -->
             <ul id="navbar">
@@ -61,22 +60,23 @@
                     <li><a href="about.html">ABOUT ME</a></li>
                 </ul>
             </div>
-
         </header>
-
-
 
         <main>
             <!-- Slideshow container - example here: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
             <section class="slideshow-container" id="carousel">
                 <!-- The Carousel Item's Dynamically here -->
-            </section>
-
+            </section>  
 
             <!-- The dots/circles -->
             <div id="dots" class="border-line-bottom">
                 <!-- The Dot's Dynamically here -->
             </div>
+
+            <p class="quote">"ART IS NOT WHAT YOU SEE,<br> 
+                BUT WHAT YOU MAKE OTHERS SEE."<br><br>
+                <cite>-EDGAR DEGAS</cite>
+            </p>
 
             <!-- The section title (Featured Artworks) -->
             <h2 class="section-title">Featured Artworks
@@ -107,6 +107,22 @@
 
         <footer class="footer">
 
+            <!-- The Logo on the Footer -->
+            <img id="footer-logo" src="images/logo1.png" alt="The logo of the website">
+
+            <!-- The Social Media -->
+                <div class="social">
+                        <ul>
+                            <li><a href="#"><img class="icon-social" src="images/fb-icon.png"></a></li>
+                            <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
+                            <li><a href="#"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
+                            <li><a href="#"><img class="icon-social" src="images/email-icon.png"></a></li>
+                            <li><a href="#"><img class="icon-social" src="images/phone-icon.png"></a></li>
+                        </ul>
+                    </div>
+
+                    <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
+
         </footer>
 
         <!-- END OF FOOTER -->
@@ -135,9 +151,12 @@
 
     <!-- The Template for the videos -->
     <template id="featured-videos">
+        <div>
         <!-- The Iframe to embed the youtube video-->
         <iframe class="youtube-video" src="youtubeURL"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p class="video-description"></p>
+        </div>
     </template>
 
     <script src="js/menu.js"></script>
@@ -208,7 +227,7 @@
                                 // pass the data into the template
                                 sliderImage.src = image;
                                 sliderTitle.innerHTML = `<a href="event_page.html" class="read-more"></a> `;
-                                artworkLink.href = "event_page.html";
+                                artworkLink.href = "#";
 
                                 // append the template (slider-item) into the DOM
                                 slider.appendChild(clone);
@@ -296,6 +315,7 @@
 
                             // Store the data for each video
                             let youtubeURL = jsonObject.youtube_url;
+                            let description = jsonObject.short_description;
 
                             // We are using the URLSearchParams in order 
                             // to take the video id (v) from the youtube url 
@@ -309,11 +329,13 @@
                             // clone the template for the Video
                             const clone = videosTemplate.cloneNode(true);
 
-                            // get a Reference from the views (iframe element)
+                            // get a Reference from the views (iframe & p elements)
                             const videoIframe = clone.querySelector(".youtube-video");
+                            const videoDescription = clone.querySelector(".video-description");
 
-                            // pass the video final url into the template
+                            // pass the video final url into the template & the description
                             videoIframe.src = videoFinalUrl;
+                            videoDescription.textContent = description;                            
 
                             // Append the video into the Videos Section
                             videos.appendChild(clone);

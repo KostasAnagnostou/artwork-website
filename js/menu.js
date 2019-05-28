@@ -9,8 +9,8 @@ let menuIcon = document.querySelector('.menuIcon');
 let nav = document.querySelector('.overlay-menu');
 
 menuIcon.addEventListener('click', () => {
-    if (nav.style.transform != 'translateX(-10%)') {
-        nav.style.transform = 'translateX(-10%)';
+    if (nav.style.transform != 'translateX(-5%)') {
+        nav.style.transform = 'translateX(-5%)';
         nav.style.transition = 'transform 0.2s ease-out';
     } else {
         nav.style.transform = 'translateX(-100%)';
@@ -33,8 +33,8 @@ toggleIcon.addEventListener('click', () => {
 // Close the mobile menu when you click a menu item
 let mobileClose = document.querySelector("#menu-mobile");
 mobileClose.addEventListener("click", function () {
-    if (nav.style.transform != 'translateX(-10%)') {
-        nav.style.transform = 'translateX(-10%)';
+    if (nav.style.transform != 'translateX(-5%)') {
+        nav.style.transform = 'translateX(-5%)';
         nav.style.transition = 'transform 0.2s ease-out';
     } else {
         nav.style.transform = 'translateX(-100%)';
