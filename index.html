@@ -10,17 +10,20 @@
     <meta name="description" content="">
     <meta name="title" content="">
     <link href="css/artworks.css" rel="stylesheet">
-    <link rel="icon" type="image/ico" href="images/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/logo-bird-32.png" sizes="32x32">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+    <!-- The Lightbox Gallery CSS (Open Source): https://lokeshdhakar.com/projects/lightbox2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.0/css/lightbox.min.css">
 
 </head>
 
 <!-- The body of the Home Page -->
+
 <body>
     <!-- The Main Grid CSS Layout for the Home Page (home-grid) -->
     <div id="home-grid">
@@ -62,24 +65,27 @@
             </div>
         </header>
 
-        <main>
+        <!-- The Loading Indicator -->
+        <img id="loading" src="images/loading.gif" alt="Loading Indicator">
+
+        <main id="loading-main">
             <!-- Slideshow container - example here: https://www.w3schools.com/howto/howto_js_slideshow.asp -->
             <section class="slideshow-container" id="carousel">
                 <!-- The Carousel Item's Dynamically here -->
-            </section>  
+            </section>
 
             <!-- The dots/circles -->
             <div id="dots" class="border-line-bottom">
                 <!-- The Dot's Dynamically here -->
             </div>
 
-            <p class="quote">"ART IS NOT WHAT YOU SEE,<br> 
+            <p class="quote">"ART IS NOT WHAT YOU SEE,<br>
                 BUT WHAT YOU MAKE OTHERS SEE."<br><br>
                 <cite>-EDGAR DEGAS</cite>
             </p>
 
             <!-- The section title (Featured Artworks) -->
-            <h2 class="section-title">Featured Artworks
+            <h2 class="section-title">FEATURED ARTWORKS
                 <hr class="yellow-line">
             </h2>
 
@@ -89,7 +95,7 @@
             </section>
 
             <!-- The section title (Featured Videos) -->
-            <h2 class="section-title">Featured Videos
+            <h2 class="section-title">FEATURED VIDEOS
                 <hr class="yellow-line">
             </h2>
 
@@ -98,10 +104,26 @@
                 <!-- The 6 Artworks Here Dynamically -->
             </section>
 
+            <!-- The section title (Exhibition) -->
+            <h2 class="section-title">EXHIBITION
+                <hr class="yellow-line">
+            </h2>
+
+            <!-- The Exhibition Section Here -->
+            <section id="exhibition-section">
+
+                <!-- The Image Gallery Container Here -->
+                <div id="exhibition">
+                    <!-- The Images Gere Dynamically -->
+                </div>
+
+                <!-- Here is the Description -->
+                <p id="exhibition-description"></p>
+            </section>
+
         </main>
 
-        <!-- The Loading Indicator -->
-        <!-- <img id="loading" src="images/loading.gif" alt="Loading Indicator"> -->
+
 
         <!-- Footer -->
 
@@ -111,27 +133,32 @@
             <img id="footer-logo" src="images/logo1.png" alt="The logo of the website">
 
             <!-- The Social Media -->
-                <div class="social">
-                        <ul>
-                            <li><a href="#"><img class="icon-social" src="images/fb-icon.png"></a></li>
-                            <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
-                            <li><a href="#"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
-                            <li><a href="#"><img class="icon-social" src="images/email-icon.png"></a></li>
-                            <li><a href="#"><img class="icon-social" src="images/phone-icon.png"></a></li>
-                        </ul>
-                    </div>
+            <div class="social">
+                <ul>
+                    <li><a href="https://www.facebook.com/maryam.safa.9803"><img class="icon-social" src="images/fb-icon.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
+                    <li><a href="https://www.instagram.com/artbymaryamsafa/"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
+                    <li><a href="mailto:maryamsafa@outlook.dk"><img class="icon-social" src="images/email-icon.png"></a></li>
+                    <li><a href="tel:45-28-97-77-24"><img class="icon-social" src="images/phone-icon.png"></a></li>
+                </ul>
+            </div>
 
-                    <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
+            <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
 
         </footer>
 
         <!-- END OF FOOTER -->
     </div>
 
+    <!--Button-go to top-->
+    <button onclick="topFunction()" id="btn-top" title="Go to top"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i></button>
+
+    <!-- ===== The Templates ===== -->
+
     <!-- The Template for the Slider Item -->
     <template id="carousel-item">
         <div class="mySlides">
-            <!-- First Picture of the Slider with Caption and a link to Details Page -->
+            <!-- First Picture of the Slider with a link to Details Page -->
             <a href="#" class="artwork-link">
                 <img class="animated fadeIn carousel-image" src="images/carousel1.jpg" alt="Carousel item">
             </a>
@@ -152,16 +179,29 @@
     <!-- The Template for the videos -->
     <template id="featured-videos">
         <div>
-        <!-- The Iframe to embed the youtube video-->
-        <iframe class="youtube-video" src="youtubeURL"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <!-- The Iframe to embed the youtube video-->
+            <iframe class="youtube-video" src="youtubeURL"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             <p class="video-description"></p>
         </div>
     </template>
 
+    <!-- The Template for the Exhibition Image Gallery -->
+    <template id="exhibition-template">
+        <a class="exhibition-image" href="IMG.jpg" data-lightbox="exhibition">
+            <img src="SRC.jpg" class="thumbnail">
+        </a>
+    </template>
+
+
+    <!-- The js for the menu -->
     <script src="js/menu.js"></script>
     <!-- jQuery 3.3.1 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- The LIGHTBOX IMAGE GALLERY (Open Source): https://lokeshdhakar.com/projects/lightbox2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.0/js/lightbox.min.js"></script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -170,7 +210,7 @@
             const ARTWORKS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks";
             const VIDEOS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/videos";
             const EXHIBITION_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/exhibition";
-           
+
             // The youtube path for the embedded videos
             const YOUTUBE_VIDEO_URL = "https://www.youtube.com/embed/";
 
@@ -182,27 +222,35 @@
             const featuredArtworkTemplate = document.querySelector("#featured-artwork").content;
             const videos = document.querySelector("#videos");
             const videosTemplate = document.querySelector("#featured-videos").content;
+            const exhibition = document.querySelector("#exhibition");
+            const exhibitionTemplate = document.querySelector("#exhibition-template").content;
+            const exhibitionDescription = document.querySelector("#exhibition-description");
+
+
+            // Show the loading indicator image (gif) 
+            // using a helper custom function
+            loadingIndicator("show");
 
             // Make the Asynchronous Calls to fetch the data
             // From the JSON API
-            loadData(ARTWORKS_ENDPOINT);
-            loadData(VIDEOS_ENDPOINT);
-            loadData(EXHIBITION_ENDPOINT);
+            fetchData(ARTWORKS_ENDPOINT);
+            fetchData(VIDEOS_ENDPOINT);
+            fetchData(EXHIBITION_ENDPOINT);
 
             // The Function to Fetch the json Endpoints
-            function loadData(fetchURL) {
+            function fetchData(fetchURL) {
                 fetch(fetchURL).then(e => e.json()).then(data => show(data));
             }
 
             // The Function to display the data 
             // into the Home Page
-            function show(data) {
+            function show(data) {  
                 data.forEach(jsonObject => {
 
                     // If we have data, run the code
                     if (jsonObject) {
 
-                        // If it's artworks
+                        // If it's artworks (Slider Section)
                         if (jsonObject.type === "artworks") {
 
                             // Store the data for each artwork
@@ -226,8 +274,8 @@
 
                                 // pass the data into the template
                                 sliderImage.src = image;
-                                sliderTitle.innerHTML = `<a href="event_page.html" class="read-more"></a> `;
-                                artworkLink.href = "#";
+                                sliderTitle.innerHTML = `<a href="details.html?id=${id}" class="read-more"></a> `;
+                                artworkLink.href = `details.html?id=${id}`;
 
                                 // append the template (slider-item) into the DOM
                                 slider.appendChild(clone);
@@ -246,15 +294,14 @@
 
                                 // Pass the data into the views
                                 imageFeatured.src = image;
-                                artworkLink.href = "#";
+                                artworkLink.href = `details.html?id=${id}`;
 
                                 // append the artwork into the featured Artworks section
                                 featuredArtwork.appendChild(clone);
                             }
 
                             // Create the arrows on the Slider
-                            const carouselSlides = document.querySelectorAll(".mySlides");
-                            console.log(carouselSlides.length);
+                            const carouselSlides = document.querySelectorAll(".mySlides");                            
 
                             // check if it's not 0
                             if (carouselSlides.length > 1) {
@@ -279,6 +326,7 @@
                                 }
 
                                 // The code for the slider here from W3Schools with few changes
+                                // --> https://www.w3schools.com/howto/howto_js_slideshow.asp 
                                 let slideIndex = 1;
                                 showSlides(slideIndex);
 
@@ -307,10 +355,14 @@
                                         dots[slideIndex - 1].className += " active";
                                     }
                                 }
-                            }
-                        }
 
-                        // if it's a Video 
+                                // Hide the Loading Indicator
+                                // after the slider is ready
+                                loadingIndicator("hide");
+                            }
+                        } // The code for the slider section ends here
+
+                        // if it's a Video (Videos Section)
                         if (jsonObject.type === "videos") {
 
                             // Store the data for each video
@@ -333,22 +385,68 @@
                             const videoIframe = clone.querySelector(".youtube-video");
                             const videoDescription = clone.querySelector(".video-description");
 
-                            // pass the video final url into the template & the description
+                            // pass the video final url & the description into the template
                             videoIframe.src = videoFinalUrl;
-                            videoDescription.textContent = description;                            
+                            videoDescription.textContent = description;
 
                             // Append the video into the Videos Section
                             videos.appendChild(clone);
                         }
 
-                        // if 
+                        // if it's for Exhibition Section
                         if (jsonObject.type === "exhibition") {
-                            console.log("exhibition");
+
+                            // Store the images & the description for the Image Gallery
+                            let images = jsonObject.images;
+                            let description = jsonObject.short_description;
+
+                            // For Each Image Inside Images, run this block of code
+                            for (let k = 0; k < images.length; k++) {
+
+                                // clone the template for the Exhibition Gallery
+                                const clone = exhibitionTemplate.cloneNode(true);
+
+                                // get a Reference from the views (iframe & p elements)
+                                const exhibitionImage = clone.querySelector(".exhibition-image");
+                                const thumbnail = clone.querySelector(".thumbnail");
+
+                                // Store each image
+                                let currentImage = images[k].guid;
+
+                                // Pass the current Image into the Exhibition-Gallery Template
+                                exhibitionImage.href = currentImage;
+                                thumbnail.src = currentImage;
+
+                                // Append the image inside the Exhibition Section
+                                exhibition.appendChild(clone);
+
+                                // Pass the description into the Exhibition Description Paragraph
+                                exhibitionDescription.textContent = description;
+                            }
+
                         }
 
 
                     }
                 });
+            }
+
+            // A Function to Hide/Show the Loading Indicator
+            function loadingIndicator(display) {
+                // Hide All the Main and the footer when loading
+                const mainLoading = document.querySelector("#loading-main");
+                const footerLoading = document.querySelector(".footer");
+                const loadingIndicator = document.querySelector("#loading");
+
+                if (display == "show") {
+                    mainLoading.style.display = "none";
+                    footerLoading.style.display = "none";
+                    loadingIndicator.style.display = "block";
+                } else {
+                    mainLoading.style.display = "block";
+                    footerLoading.style.display = "block";
+                    loadingIndicator.style.display = "none";
+                }
             }
         });
     </script>

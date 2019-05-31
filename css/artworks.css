@@ -1,34 +1,178 @@
-
+ 
 /* Global Variables with our values */
 :root {
     --main-color:#FFED00;
-	--secondary-color:#707070;	
-	--color-white:#fff;
-	--color-black:#000;
-	--fonts-montserrat:'Montserrat', sans-serif;
+    --secondary-color:#707070;
+    --color-white:#fff;
+    --color-black:#000;
+    --fonts-montserrat:'Montserrat', sans-serif;
 }
-
 html, body{
     margin: 0px;
     font-family: var(--fonts-montserrat);
+    scroll-behavior: smooth;  
+}
+#menu-mobile {
+    padding-bottom: 10px;
+}
+/* Hide the Desktop Menu */
+#navbar{
+    display:none;
+}
+/* Toggle Menu Icon */
+.menuIcon {
+    display: block;
+}
+.menuIcon.toggle .icon-bars {
+    top: 5px;
+    transform: translate3d(0, 5px, 0) rotate(135deg);
+    transition-delay: 0.1s;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.menuIcon.toggle .icon-bars::before {
+    top: 0;
+    transition-delay: 0.1s;
+    opacity: 0;
+}
+.menuIcon.toggle .icon-bars::after {
+    top: 10px;
+    transform: translate3d(0, -10px, 0) rotate(-270deg);
+    transition-delay: 0.1s;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.menuIcon.toggle .icon-bars.overlay {
+    width: 20px;
+    opacity: 0;
+    transition: all 0s ease 0s;
+}
+/*======= Responsive Mobile Menu========*/
+.overlay-menu {
+    display:block;
+    background: var(--color-white);
+    color: var(--secondary-color);
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    padding-left: 30%;
+    margin-top: 70px;
+    transform: translateX(-100%);
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s ease-out;
+    z-index: 3;
+}
+.overlay-menu ul, .overlay-menu li {
+    display: block;
+    position: relative;
+    width: auto;
+}
+.overlay-menu li a {
+    display: block;
+    font-size: 16px;
+    padding: 10px 0;
+    text-align: left;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    color: var(--color-black);
+}
+/* Animated Bottom Line */
+.overlay-menu li a:before, .overlay-menu li a:after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -1px;
+    background: var(--main-color);
+}
+.overlay-menu li a:before {
+    left: 0;
+    transition: 0.5s;
+}
+.overlay-menu li a:after {
+    background: var(--main-color);
+    right: 0;
+}
+.overlay-menu li a.aboutme:hover:before, .overlay-menu li a.aboutme.active:before {
+    background: var(--main-color);
+    width: 15%;
+    transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.overlay-menu li a:hover:after, .overlay-menu li a.active:after {
+    background: transparent;
+    width: 100%;
+   /* transition: 0s;
+    */
 }
 
-/* The Style for the Logo Image */
-  #logo {
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
-      margin-top: -45px;
-  }
-  /* The background of the Logo */
-  .logo-background{
-      height:35px;
-      background-color:yellow;
-      margin-top: 20px;      
-  }
+/* The Styles for the Grid */
+#home-grid {
+    height:100%;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "header-area" "main-area" "footer-area";
+}
+header {
+    grid-area:header-area;
+}
+main{
+    grid-area: main-area;
+}
+footer{
+    grid-area:footer-area;
+    background-color:var(--main-color);
+}
 
-  /* The STYLE for the Menu Mobile Icon */
-  .menuIcon {
+/* The Grid for the Featured Artworks Section */
+#artworks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+/* The Grid for the Videos Section */
+#videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    grid-gap: 10px;
+}
+/* The Grid for the Exhibition Section */
+#exhibition {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+    padding-bottom: 20px;
+}
+
+/* The style for the Images for Featured Artworks */
+.image-artwork {
+    width: 285px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom:10px;
+}
+/* The style for the Youtube Video */
+iframe {
+    width:100%;
+    height:315px;
+    border:none;
+}
+/* The Style for the Logo Image */
+#logo {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: -45px;
+}
+/* The background of the Logo */
+.logo-background{
+    height:35px;
+    background-color:yellow;
+    margin-top: 20px;
+}
+/* The STYLE for the Menu Mobile Icon */
+.menuIcon {
     cursor: pointer;
     display: block;
     position: absolute;
@@ -77,14 +221,14 @@ html, body{
 }
 @keyframes middleBar {
     0% {
-        width: 0px
-    }
+        width: 0px 
+   }
     50% {
-        width: 20px
-    }
+        width: 20px 
+   }
     100% {
-        width: 0px
-    }
+        width: 0px 
+   }
 }
 .icon-bars.overlay::before {
     background: var(--secondary-color);
@@ -93,14 +237,14 @@ html, body{
 }
 @keyframes topBar {
     0% {
-        width: 0px
-    }
+        width: 0px 
+   }
     50% {
-        width: 10px
-    }
+        width: 10px 
+   }
     100% {
-        width: 0px
-    }
+        width: 0px 
+   }
 }
 .icon-bars.overlay::after {
     background: var(--secondary-color);
@@ -109,198 +253,93 @@ html, body{
 }
 @keyframes bottomBar {
     0% {
-        width: 0px
-    }
+        width: 0px 
+   }
     50% {
-        width: 15px
-    }
+        width: 15px 
+   }
     100% {
-        width: 0px
-    }
+        width: 0px 
+   }
 }
 
-/* The Style for the Desktop Menu */
-
-#navbar {
-    width: 95%;
-    display:block;
-    position: relative;   
-    margin-right: auto;
-    margin-left: auto;
-	top: 0;
-	height: 20px;
-	line-height: 1px;
-	z-index: 10;
-    font-weight: bold;
-    padding-inline-start:0;
-    margin-top:0;
+ /* ---------------- Styles for the Slideshow ----------- */
+ .mySlides {
+    display: none;   
+    width: 100%; 
 }
-
-#navbar li {
-	display: inline-block;
-}
-
-#navbar ul {
-	padding-top: 10px;
-	padding-right: 50px;
-	display: inline-block;
-	list-style: none;
-	text-align: center;
-	transition: transform 0.5s ease-out;
-}
-
-#navbar li a {
-	color: var(--secondary-color);
-	display: block;
-	font-size: 12px;
-	letter-spacing: 1px;
-	margin: 0 10px;
-	padding: 0 4px;
-	position: relative;
-	text-decoration: none;
-	text-transform: uppercase;
-    transition: all 0.5s ease;
-    padding-top:10px;
-}
-
-#navbar li a:hover,
-#navbar li a.active {
-	color: var(--secondary-color);
-	transition: all 1s ease;
-}
-
-/* Animated Bottom Line under the menu icons */
-#navbar li a:before,
-#navbar li a:after {
-	content: '';
-	position: absolute;
-	width: 0%;
-	height: 2px;
-	bottom: -12px;
-	background: var(--main-color);
-}
-
-#navbar li a:before {
-	left: 0;
-	transition: 0.5s;
-}
-
-#navbar li a:after {
-	background: var(--main-color);
-	right: 0;
-}
-
-#navbar li a:hover:before,
-#navbar li a.active:before  {
-	background: var(--main-color);
-	width: 100%;
-	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-#navbar li a:hover:after,
-#navbar li a.active:after {
-	background: transparent;
-	width: 100%;
-}
-
-
-/* The Style for the menu items position */
-.menu-left{
-    float:left;
-}
-.menu-right {
-    float:right;
-}
-
-
-/* Hide this when it's Desktop */
-.menuIcon,
-.overlay-menu {
-    display:none;
-}
-
-/* ---------------- Styles for the Slideshow ----------- */
-.mySlides {display: none}
-
 /* Slideshow container */
-.slideshow-container {
-width: 100%;
-max-width: 1600px;
-position: relative;
-margin: auto;  
+ .slideshow-container {
+     width: 100%;
+     max-width: 1600px;
+     position: relative;
+     margin: auto;
 }
-
-.slideshow-container picture img {
-	width:100%;
-	height: 410px;
+ .slideshow-container picture img {
+     width:100%;
+     height: 410px;
 }
-
 /* Next & previous buttons */
-.prev, .next {
-cursor: pointer;
-position: absolute;
-top: 50%;
-width: auto;
-padding: 10px;
-margin-top: -22px;
-background-color: rgba(0,0,0,0.5);
-color: #fff;
-font-weight: bold;
-font-size: 18px;
-transition: 0.6s ease;
-border-radius: 0 3px 3px 0; 
+ .prev, .next {
+     cursor: pointer;
+     position: absolute;
+     top: 50%;
+     width: auto;
+     padding: 10px;
+     margin-top: -22px;
+     background-color: rgba(0,0,0,0.5);
+     color: #fff;
+     font-weight: bold;
+     font-size: 18px;
+     transition: 0.6s ease;
+     border-radius: 0 3px 3px 0;
 }
 /* Position the "previous button" to the left */
-.prev {
-	left:0;
-	margin-left:12px;
+ .prev {
+     left:0;
+     margin-left:12px;
 }
 /* Position the "next button" to the right */
-.next {
-right: 0;
-margin-right: 12px;
+ .next {
+     right: 0;
+     margin-right: 12px;
 }
-
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-background-color: rgba(0,0,0,0.8);
-color:#fff;
+ .prev:hover, .next:hover {
+     background-color: rgba(0,0,0,0.8);
+     color:#fff;
 }
-
 /* Caption text */
-.text {
-color: var(--color-black);
-background-color: var(--color-white);
-font-size: 24px;
-padding-top: 4px;
-bottom: 8px;
-width: 100%;
-text-align: center;
+ .text {
+     color: var(--color-black);
+     background-color: var(--color-white);
+     font-size: 24px;
+     padding-top: 4px;
+     bottom: 8px;
+     width: 100%;
+     text-align: center;
 }
-
 /* The dots/bullets/indicators */
-.dot {
-cursor: pointer;
-height: 15px;
-width: 15px;
-margin: 0 2px;
-background-color: var(--color-white);
-border-radius: 50%;
-display: inline-block;
-transition: background-color 0.6s ease;
+ .dot {
+     cursor: pointer;
+     height: 15px;
+     width: 15px;
+     margin: 0 2px;
+     background-color: var(--color-white);
+     border-radius: 50%;
+     display: inline-block;
+     transition: background-color 0.6s ease;
 }
-
-div#dots {
-text-align:center; 
-padding-top:12px;
-padding-bottom: 12px; 
-margin-top: -50px;
-z-index:1;
-position: relative;
+ div#dots {
+     text-align:center;
+     padding-top:12px;
+     padding-bottom: 12px;
+     margin-top: -50px;
+     z-index:1;
+     position: relative;
 }
-
-span.active, .dot:hover {
-    background-color:var(--main-color);
+ span.active, .dot:hover {
+     background-color:var(--main-color);
 }
 
 .carousel-image {
@@ -311,21 +350,18 @@ span.active, .dot:hover {
     position: relative;
     z-index: 0;
 }
-
 h2.carousel-title {
-	margin-top:6px;
-	margin-bottom:0px;
+    margin-top:6px;
+    margin-bottom:0px;
 }
-
 h2 a.read-more {
-	font-size:28px;
-	color:var(--color-black);
+    font-size:28px;
+    color:var(--color-black);
 }
 /* The Style for the Section Titles (Featured Artworks, etc) */
 .section-title {
     text-align: center;
 }
-
 /* The Yellow Line under the Home Page Section titles (Featured Artworks, etc) */
 .yellow-line {
     background-color:var(--main-color);
@@ -333,64 +369,15 @@ h2 a.read-more {
     height:2px;
     border:none;
 }
-/* The Styles for the Grid */
-#home-grid {
-    height:100%;
-    display:grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    "header-area"
-    "main-area"
-    "footer-area";
-    }
-
-header {
-    grid-area:header-area;
-    }
-
-main{
-    grid-area: main-area;
-    }
-
-footer{
-    grid-area:footer-area;
-    background-color:var(--main-color);
-    }
-
-/* The Grid for the Featured Artworks Section */
-#artworks {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    padding-bottom: 20px;
-}
-
-/* The Grid for the Videos Section */
-#videos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
-    grid-gap: 10px;
-}
-
-/* The style for the Images for Featured Artworks */
-.image-artwork {
-    width: 380px;
-    height: 400px;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom:10px;
-}
 
 /* The style for the Youtube Video */
 iframe {
     width:80%;
     height:315px;
-    border:none; 
+    border:none;
     display:block;
     margin-left:auto;
-    margin-right:auto;   
+    margin-right:auto;
 }
 /* The Style for the Video Description */
 .video-description {
@@ -399,14 +386,12 @@ iframe {
     padding-right: 10px;
     padding-bottom: 30px;
 }
-
 /* The Style for the quote on the Home Page */
 .quote {
     text-align:center;
     padding-top: 20px;
     padding-bottom: 40px;
 }
-
 /* The Style for the Social Media */
 .social {
     text-align: center;
@@ -430,156 +415,316 @@ iframe {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
 .copyright {
     padding-top:40px;
     text-align:center;
     font-size:15px;
 }
-
 /* The style of the links */
-a:link,
-a:active, 
-a:visited {
-text-decoration: none;
-color:var(--color-black);
+a:link, a:active, a:visited {
+    text-decoration: none;
+    color:var(--color-black);
 }
 
-@media only screen and (min-width: 320px) and (max-width: 600px) {
-
-    #menu-mobile {
-        padding-bottom: 10px;
-    }
-
-       /* Hide the Desktop Menu */
-    #navbar{
-        display:none;
-    }
-
-    /* Toggle Menu Icon */
-.menuIcon {
+ /* The Style for the thumbnail image (Image Gallery) */
+ .thumbnail {
+    width:280px;
+    height:350px; 
     display: block;
-}
-.menuIcon.toggle .icon-bars {
-    top: 5px;
-    transform: translate3d(0, 5px, 0) rotate(135deg);
-    transition-delay: 0.1s;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.menuIcon.toggle .icon-bars::before {
-    top: 0;
-    transition-delay: 0.1s;
-    opacity: 0;
-}
-.menuIcon.toggle .icon-bars::after {
-    top: 10px;
-    transform: translate3d(0, -10px, 0) rotate(-270deg);
-    transition-delay: 0.1s;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.menuIcon.toggle .icon-bars.overlay {
-    width: 20px;
-    opacity: 0;
-    transition: all 0s ease 0s;
+    margin-left: auto;
+    margin-right: auto;     
 }
 
-    /*======= Responsive Mobile Menu========*/
-.overlay-menu {
-    display:block;
-	background: var(--color-white);
-	color: var(--secondary-color);
-	justify-content: center;
-	position: fixed;
-	top: 0;
-	padding-left: 30%;
-	margin-top: 70px;
-	transform: translateX(-100%);
-	width: 100%;
-	height: 100%;
-	transition: transform 0.2s ease-out;
-	z-index: 3;
+/* The Style for the Exhibition Description Paragraph */
+#exhibition-description {
+    padding-top:5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-top:0px;
+    text-align: center;
 }
 
-.overlay-menu ul,
-.overlay-menu li {
-	display: block;
-	position: relative;
-	width: auto;
+/* The Style for the Loading Indicator */
+#loading {
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.overlay-menu li a {
-	display: block;
-	font-size: 16px;
-	padding: 10px 0;
-	text-align: left;
-	text-transform: uppercase;
-	transition: color 0.3s ease;
-	text-decoration: none;
-	color: var(--color-black);
+/* The Style for the Button top */
+#btn-top {
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 20px;
+    z-index: 99;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: var(--main-color);
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 13px;
+    border-radius: 4px;
 }
 
-    /* Animated Bottom Line */
-
-.overlay-menu li a:before,
-.overlay-menu li a:after {
-	content: '';
-	position: absolute;
-	width: 0%;
-	height: 2px;
-	bottom: -1px;
-	background: var(--main-color);
+#btn-top:hover {
+    background-color: var(--color-white);
+    color: var(--main-color);
+    box-shadow: 4px 8px 13px #4a4a4a;
 }
 
-.overlay-menu li a:before {
-	left: 0;
-	transition: 0.5s;
-}
+/* ==== The Style for the Details Page ==== */
+/* The Style for the Image Inside the Details Page  */
 
-.overlay-menu li a:after {
-	background: var(--main-color);
-	right: 0;
-}
-
-.overlay-menu li a.aboutme:hover:before,
-.overlay-menu li a.aboutme.active:before {
-	background: var(--main-color);
-	width: 15%;
-	transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.overlay-menu li a:hover:after,
-.overlay-menu li a.active:after {
-	background: transparent;
-	width: 100%;
-	/* transition: 0s; */
-}
-
-/* The Grid for the Featured Artworks Section */
-#artworks {
+/* The Grid for the Artwork Images Section */
+.artwork-images {
     display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))!important;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "main-image-area"
+    "gallery-area";
 }
-
-/* The Grid for the Videos Section */
-#videos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-    grid-gap: 10px;
+.artwork-gallery {
+    grid-area:gallery-area;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
-
-/* The style for the Images for Featured Artworks */
-.image-artwork {
-    width: 300px;
-    height: 300px;
+.artwork-img {
+    grid-area:main-image-area;
+    width:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;    
+}
+/* The Style for the Gallery Thumbnail */
+.gallery-thumbnail {
+    width:100px;
+    height:120px;
     object-fit: cover;
     object-position: center;
+    display:inline-block;
+    margin-left:0;
+    margin-right:0;
+    cursor: pointer;
+    margin-top:5px;
+    margin-left:5px;    
+    border: 5px solid var(--main-color);
 }
 
-/* The style for the Youtube Video */
-iframe {
-    width:100%;
-    height:315px;
-    border:none;    
+/* The Grid for the info (Details Page) */
+.artwork-info {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
 }
-	
+
+.info {
+    margin-left:0px;
+    margin-right:auto;    
 }
+
+.description {    
+    padding-top: 30px;
+    padding-right: 20px;
+    padding-left:20px;    
+}
+
+
+/* =========  Media Queries for DESKTOP  ========== */
+@media screen and (min-width: 600px) {
+   /* The Style for the Desktop Menu */
+    #navbar {
+        width: 95%;
+        display:block;
+        position: relative;
+        margin-right: auto;
+        margin-left: auto;
+        top: 0;
+        height: 20px;
+        line-height: 1px;
+        z-index: 10;
+        font-weight: bold;
+        padding-inline-start:0;
+        margin-top:0;
+   }
+    #navbar li {
+        display: inline-block;
+   }
+    #navbar ul {
+        padding-top: 10px;
+        padding-right: 50px;
+        display: inline-block;
+        list-style: none;
+        text-align: center;
+        transition: transform 0.5s ease-out;
+   }
+    #navbar li a {
+        color: var(--secondary-color);
+        display: block;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin: 0 10px;
+        padding: 0 4px;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: all 0.5s ease;
+        padding-top:10px;
+   }
+    #navbar li a:hover, #navbar li a.active {
+        color: var(--secondary-color);
+        transition: all 1s ease;
+   }
+   /* Animated Bottom Line under the menu icons */
+    #navbar li a:before, #navbar li a:after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: -12px;
+        background: var(--main-color);
+   }
+    #navbar li a:before {
+        left: 0;
+        transition: 0.5s;
+   }
+    #navbar li a:after {
+        background: var(--main-color);
+        right: 0;
+   }
+    #navbar li a:hover:before, #navbar li a.active:before {
+        background: var(--main-color);
+        width: 100%;
+        transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+   }
+    #navbar li a:hover:after, #navbar li a.active:after {
+        background: transparent;
+        width: 100%;
+   }
+   /* The Style for the menu items position */
+    .menu-left{
+        float:left;
+   }
+    .menu-right {
+        float:right;
+   }
+   /* Hide this when it's Desktop */
+    .menuIcon, .overlay-menu {
+        display:none;
+   }  
+   
+   /* The Grid for the Featured Artworks Section */
+    #artworks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        padding-bottom: 20px;
+   }
+   /* The Grid for the Videos Section */
+    #videos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+        grid-gap: 10px;
+   }
+   /* The Grid for the Exhibition Section */
+   #exhibition {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding-bottom: 20px;
+}
+   /* The style for the Images for Featured Artworks */
+    .image-artwork {
+        width: 380px;
+        height: 400px;
+        object-fit: cover;
+        object-position: center;        
+   }  
+   /* The Style for the thumbnail image (Image Gallery - Home Page) */
+   .thumbnail {
+       width:300px;
+       height:350px;      
+   }
+
+
+/* ==== The Style for the Details Page ==== */
+/* The Style/Grid for the Image Inside the Details Page  */
+.artwork-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "main-image-area"
+    "gallery-area";
+}
+/* Style/grid for the Gallery (Details Page) */
+.artwork-gallery {
+    grid-area:gallery-area;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+}
+/* Style for the main image */
+.artwork-img {
+    grid-area:main-image-area;
+    width:auto;
+    height:400px;
+}
+
+/* The Grid for the info (Details Page) */
+.artwork-info {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+}
+
+.info {
+    margin-left:20%;
+    margin-right:auto; 
+}
+
+.description {
+    padding-top: 30px;
+    padding-right: 20%;    
+}
+
+}
+
+/* =========  Media Queries for DESKTOP  ========== */
+@media screen and (min-width: 750px) {
+/* ==== The Style for the Details Page ==== */
+/* The Style for the Image Inside the Details Page  */
+.artwork-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "gallery-area main-image-area main-image-area";
+}
+/* The Style for the Gallery Thumbnail (Details Page) */
+.gallery-thumbnail {
+    width:150px;
+    height:120px;
+    object-fit: cover;
+    object-position: center;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.artwork-gallery {
+    grid-area:gallery-area;
+    margin-top:120px;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+}
+
+.artwork-img {
+    grid-area:main-image-area;
+    width:auto;
+    height:400px;
+}
+}
+
+/* =========  Media Queries for DESKTOP  ========== */
+@media screen and (min-width: 1130px) {
+/* The style for the  Main Image (Details.html Page) */
+    .artwork-img {
+        grid-area:main-image-area;
+        width:auto;
+        height:600px;
+    }
+}
+
+

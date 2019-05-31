@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- The Head of the Home Page with Meta Tags & Title -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Maryam Safa Artworks - Details Page</title>
+    <meta name="description" content="">
+    <meta name="title" content="">
+    <link href="css/artworks.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/logo-bird-32.png" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+    <!-- The Lightbox Gallery CSS (Open Source): https://lokeshdhakar.com/projects/lightbox2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.0/css/lightbox.min.css">
+
+</head>
+
+<!-- The body of the Home Page -->
+
+<body>
+    <!-- The Main Grid CSS Layout for the Home Page (home-grid) -->
+    <div id="home-grid">
+
+        <!-- The header area -->
+        <header id="header">
+
+            <!-- The Yellow Background Behind the Logo -->
+            <div class="logo-background">
+            </div>
+
+            <!-- Logo Here with a link to the Home Page-->
+            <a href="index.html"><img id="logo" src="images/logo1.png" alt="The logo of the website"></a>
+
+            <!-- The Desktop Menu -->
+            <ul id="navbar">
+                <li class="menu-left"><a href="paintings.html">PAINTINGS</a></li>
+                <li class="menu-left"><a href="drawings.html">DRAWINGS</a></li>
+                <li class="menu-right"><a href="contact.html">CONTACT</a></li>
+                <li class="menu-right"><a href="about.html">ABOUT ME</a></li>
+            </ul>
+
+            <!-- Menu Icon -->
+            <div class="menuIcon">
+                <span class="icon icon-bars"></span>
+                <span class="icon icon-bars overlay"></span>
+            </div>
+
+
+            <!-- Overlay Menu (The Mobile Menu)-->
+            <div class="overlay-menu">
+                <ul id="menu-mobile">
+                    <!-- The Menu -->
+                    <li><a href="paintings.html">PAINTINGS</a></li>
+                    <li><a href="drawings.html">DRAWINGS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="about.html">ABOUT ME</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- The Loading Indicator -->
+        <img id="loading" src="images/loading.gif" alt="Loading Indicator">
+
+        <!-- The Main Section Here -->
+        <main id="loading-main">
+
+            <!-- The Artwork Here -->
+
+        </main>
+
+
+
+        <!-- Footer -->
+
+        <footer class="footer">
+
+            <!-- The Logo on the Footer -->
+            <img id="footer-logo" src="images/logo1.png" alt="The logo of the website">
+
+            <!-- The Social Media -->
+            <div class="social">
+                <ul>
+                    <li><a href="#"><img class="icon-social" src="images/fb-icon.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/email-icon.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/phone-icon.png"></a></li>
+                </ul>
+            </div>
+
+            <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
+
+        </footer>
+
+        <!-- END OF FOOTER -->
+    </div>
+
+    <!--Button-go to top-->
+    <button onclick="topFunction()" id="btn-top" title="Go to top"><i class="fa fa-arrow-up fa-lg"
+            aria-hidden="true"></i></button>
+
+    <!-- ===== The Templates ===== -->
+
+
+    <!-- The Template Article for the Event -->
+    <template id="artwork">
+
+        <!-- Article -->
+        <article class="artwork-container">
+
+            <!-- The Images of the Artwork -->
+            <section class="artwork-images">
+
+                <!-- Artwork Gallery -->
+                <div class="artwork-gallery">
+                    <!-- The Images for the Gallery Here Dynamically -->
+                </div>
+
+                <!-- The Main Image -->
+                <img class="artwork-img" src="SRC.jpg" alt="event image description">
+            </section>
+
+            <div class="artwork-info">
+
+                <div class="info">
+                    <h3 class="category"></h3>
+                    <hr>
+                    <h3 class="dimensions"></h3>
+                    <hr>
+                    <h3 class="price"></h3>
+                </div>
+
+                <div class="description"></div>
+            </div>
+            </div>
+        </article>
+    </template>
+
+
+
+    <!-- The js for the menu -->
+    <script src="js/menu.js"></script>
+    <!-- jQuery 3.3.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- The LIGHTBOX IMAGE GALLERY (Open Source): https://lokeshdhakar.com/projects/lightbox2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.0/js/lightbox.min.js"></script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {            
+
+            // The json end points for the API 
+            const ARTWORKS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks/";
+
+            // take the id for the artwork from the url
+            let url = new URLSearchParams(window.location.search);
+            let id = url.get("id");
+
+            // Show the loading indicator image (gif) 
+            // using a helper custom function
+            loadingIndicator("show");
+
+            // Make the Asynchronous Calls to fetch the data
+            // From the JSON API passing the id for each artwork
+            fetchArtworks(ARTWORKS_ENDPOINT + id);
+
+            // The Function to Fetch the json Endpoints
+            function fetchArtworks(artworkURL) {
+                fetch(artworkURL).then(e => e.json()).then(artwork => show(artwork));
+            }
+
+            // The Function to display the data 
+            // into the Home Page
+            function show(artwork) {
+
+                // If we have data, run the code
+                if (artwork) {
+
+                    console.log(artwork.images[0].guid);
+
+                    // If it has an image
+                    if (artwork.images[0].guid) {
+
+                        // Store the Data for each Artwork
+                        let title = artwork.artwork_title;
+                        let images = artwork.images;
+                        let description = artwork.long_description;
+                        let price = artwork.price;
+                        let category = artwork.artwork_types[0];
+                        let dimensions = artwork.dimensions;
+
+                        // The template & the container 
+                        const template = document.querySelector("#artwork").content;
+                        const main = document.querySelector("main");
+
+                        // clone the template
+                        const clone = template.cloneNode(true);
+
+                        // Find the Views (The HTML Elements inside the Template) 
+                        const imageView = clone.querySelector(".artwork-img");
+                        const imageGallery = clone.querySelector(".artwork-gallery");
+                        const descriptionView = clone.querySelector(".description");
+                        const categoryView = clone.querySelector(".category");
+                        const priceView = clone.querySelector(".price");
+                        const dimensionsView = clone.querySelector(".dimensions");
+
+                        // Pass the data into the Views starting with image                       
+                        imageView.src = images[0].guid;                        
+
+                        // set the category
+                        if (category == 23) {
+                           categoryView.textContent = "Painting";
+                        } else {
+                            categoryView.textContent = "Drawing";
+                        }
+
+                        // set the dimensions
+                        dimensionsView.textContent = dimensions;
+                        
+                        // set the price info
+                        if (price == 0.00) {
+                            priceView.innerHTML = `For Price Contact <a href="mailto:maryamsafa@outlook.dk" class="contact">Here</a>`;
+                        } else {
+                            priceView.textContent = price;
+                        }
+
+                        // Set the description 
+                        descriptionView.innerHTML = description;
+
+                        // create the image gallery
+                        // for each image of the artwork
+                        for (let i = 0; i < images.length; i++) {
+                            let currentImage = document.createElement("img");
+                            currentImage.classList.add("gallery-thumbnail");
+                            currentImage.src = images[i].guid;
+
+                            // Add click Event Listener on the each image
+                            currentImage.addEventListener("click", function() {
+                                imageView.classList.add("animated","fadeIn");
+                                imageView.src = images[i].guid;
+
+                                // Remove the Class animated fadeIn
+                                imageView.addEventListener("animationend", function() {
+                                    imageView.classList.remove("animated","fadeIn");
+                                });
+                            });
+
+                            // Append the Image inside the Image Gallery
+                            imageGallery.appendChild(currentImage);
+                        }
+
+                        // Append the clone inside the Main (Container)
+                        main.appendChild(clone);
+
+                        // hide the loading indicator - the data loaded
+                        loadingIndicator("hide");
+
+                    } else {
+                        alert("Sorry this page not Found :( Return to the Home Page!");
+                    }
+
+
+                }
+
+            }
+
+            // A Function to Hide/Show the Loading Indicator
+            function loadingIndicator(display) {
+                // Hide All the Main and the footer when loading
+                const mainLoading = document.querySelector("#loading-main");
+                const footerLoading = document.querySelector(".footer");
+                const loadingIndicator = document.querySelector("#loading");
+
+                if (display == "show") {
+                    mainLoading.style.display = "none";
+                    footerLoading.style.display = "none";
+                    loadingIndicator.style.display = "block";
+                } else {
+                    mainLoading.style.display = "block";
+                    footerLoading.style.display = "block";
+                    loadingIndicator.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

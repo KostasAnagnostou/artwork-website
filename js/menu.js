@@ -48,18 +48,18 @@ mobileClose.addEventListener("click", function () {
     }
 });
 
-// When you scroll down 20px from the top of the page,you can see the button(built-in JavaScript's event  )
-// window.onscroll = function() {scroll()};
+// When you scroll down 20px from the top of the page, you can see the button(built-in JavaScript's event  )
+window.onscroll = function() {scroll()};
 
-// function scroll() {
-//   if (document.documentElement.scrollTop > 20) {
-//     document.getElementById("Btn-top").style.display = "block";
-//   } else {
-//     document.getElementById("Btn-top").style.display = "none";
-//   }
-// }
+function scroll() {
+  if (document.documentElement.scrollTop > 20) {
+    document.getElementById("btn-top").style.display = "block";
+  } else {
+    document.getElementById("btn-top").style.display = "none";
+  }
+}
 
 // When you click on the button,you will see the top of the page
-// function topFunction() {
-//   document.documentElement.scrollTop = 0;
-// }
+function topFunction() {
+  document.documentElement.scrollTop = 0;
+}
