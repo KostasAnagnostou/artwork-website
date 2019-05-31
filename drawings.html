@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- The Head of the Drawings Page -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Maryam Safa Artworks - Drawings Page</title>
+    <meta name="description" content="">
+    <meta name="title" content="">
+    <link href="css/artworks.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/logo-bird-32.png" sizes="32x32">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+</head>
+
+<!-- The body of the Drawings Page -->
+
+<body>
+    <!-- The Main Grid CSS Layout for the Drawings Page (home-grid) -->
+    <div id="home-grid">
+
+        <!-- The header area -->
+        <header id="header">
+
+            <!-- The Yellow Background Behind the Logo -->
+            <div class="logo-background">
+            </div>
+
+            <!-- Logo Here with a link to the Home Page-->
+            <a href="index.html"><img id="logo" src="images/logo1.png" alt="The logo of the website"></a>
+
+            <!-- The Desktop Menu -->
+            <ul id="navbar">
+                <li class="menu-left"><a href="paintings.html">PAINTINGS</a></li>
+                <li class="menu-left"><a href="drawings.html">DRAWINGS</a></li>
+                <li class="menu-right"><a href="contact.html">CONTACT</a></li>
+                <li class="menu-right"><a href="about.html">ABOUT ME</a></li>
+            </ul>
+
+            <!-- Menu Icon -->
+            <div class="menuIcon">
+                <span class="icon icon-bars"></span>
+                <span class="icon icon-bars overlay"></span>
+            </div>
+
+
+            <!-- Overlay Menu (The Mobile Menu)-->
+            <div class="overlay-menu">
+                <ul id="menu-mobile">
+                    <!-- The Menu -->
+                    <li><a href="paintings.html">PAINTINGS</a></li>
+                    <li><a href="drawings.html">DRAWINGS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="about.html">ABOUT ME</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- The Loading Indicator -->
+        <img id="loading" src="images/loading.gif" alt="Loading Indicator">
+
+        <!-- The Main Section Here -->
+        <main id="loading-main">
+
+            <!-- The section title (Drawings) -->
+            <h2 class="section-title">DRAWINGS
+                <hr class="yellow-line">
+            </h2>
+
+            <!-- The Quote -->
+            <p class="quote">"ART IS EVERYWHERE"
+            </p>
+
+            <!-- The Drawings Section -->
+            <section id="artworks">
+                <!-- The drawings Here Dynamically -->
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <!-- The Logo on the Footer -->
+            <img id="footer-logo" src="images/logo1.png" alt="The logo of the website">
+
+            <!-- The Social Media -->
+            <div class="social">
+                <ul>
+                    <li><a href="#"><img class="icon-social" src="images/fb-icon.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/email-icon.png"></a></li>
+                    <li><a href="#"><img class="icon-social" src="images/phone-icon.png"></a></li>
+                </ul>
+            </div>
+
+            <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
+
+        </footer>
+
+        <!-- END OF FOOTER -->
+    </div>
+
+    <!--Button-go to top-->
+    <button onclick="topFunction()" id="btn-top" title="Go to top"><i class="fa fa-arrow-up fa-lg"
+            aria-hidden="true"></i></button>
+
+
+    <!-- The Template for each Drawing -->
+    <template id="drawing">
+        <!-- The Main Photo of the ArtWork -->
+        <a href="#" class="artwork-link">
+            <img class="image-artwork" src="SRC.jpg" alt="">
+        </a>
+    </template>
+
+
+
+    <!-- The js for the menu -->
+    <script src="js/menu.js"></script>
+    <!-- jQuery 3.3.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // The json endpoint for the drawings
+            const ARTWORKS_DRAWINGS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks?artwork_types=22";
+
+            // Show the loading indicator image (gif) 
+            // using a helper custom function
+            loadingIndicator("show");
+
+            // Make the Asynchronous Calls to fetch the data
+            // From the JSON API passing the json Endpoint for the drawings
+            fetchArtworks(ARTWORKS_DRAWINGS_ENDPOINT);
+
+            // The Function to Fetch the json Endpoints
+            function fetchArtworks(drawingsURL) {
+                fetch(drawingsURL).then(e => e.json()).then(drawings => show(drawings));
+            }
+
+            // The Function to display the data 
+            // into the drawings page
+            function show(drawings) {
+                drawings.forEach(drawing => {
+
+                    // If we have data, run the code
+                    if (drawing) {
+
+                        // If it has an image
+                        if (drawing.images[0].guid) {
+
+                            // Store the id and the Image for each Artwork
+                            let id = drawing.id;
+                            let image = drawing.images[0].guid;
+
+                            // The template & the container 
+                            const template = document.querySelector("#drawing").content;
+                            const drawings = document.querySelector("#artworks");
+
+                            // clone the template
+                            const clone = template.cloneNode(true);
+
+                            // get a Reference from the views (Elements)
+                            const imageView = clone.querySelector(".image-artwork");
+                            const artworkLink = clone.querySelector(".artwork-link");
+
+                            // Pass the data into the views
+                            imageView.src = image;
+                            artworkLink.href = `details.html?id=${id}`;
+
+                            // append the artwork into the featured Artworks section
+                            drawings.appendChild(clone);
+
+                            // hide the loading indicator - the data loaded
+                            loadingIndicator("hide");
+
+                        } else {
+                            alert("Sorry this page not Found :( Return to the Home Page!");
+                        }
+
+
+                    }
+                }); 
+            }
+
+            // A Function to Hide/Show the Loading Indicator
+            function loadingIndicator(display) {
+                    // Hide All the Main and the footer when loading
+                    const mainLoading = document.querySelector("#loading-main");
+                    const footerLoading = document.querySelector(".footer");
+                    const loadingIndicator = document.querySelector("#loading");
+
+                    if (display == "show") {
+                        mainLoading.style.display = "none";
+                        footerLoading.style.display = "none";
+                        loadingIndicator.style.display = "block";
+                    } else {
+                        mainLoading.style.display = "block";
+                        footerLoading.style.display = "block";
+                        loadingIndicator.style.display = "none";
+                    }
+                }
+        });
+
+    </script>
+</body>
+
+</html>
