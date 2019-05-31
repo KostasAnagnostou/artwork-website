@@ -228,11 +228,18 @@
                         if (price == 0.00) {
                             priceView.innerHTML = `For Price Contact <a href="mailto:maryamsafa@outlook.dk" class="contact">Here</a>`;
                         } else {
-                            priceView.textContent = price;
+                            priceView.innerHTML = price + "kr." + " | " + `Contact <a href="mailto:maryamsafa@outlook.dk" class="contact">Here</a>`;
                         }
 
-                        // Set the description 
-                        descriptionView.innerHTML = description;
+                        // Set the description  
+                        // Split the first the paragraphs
+                        let splitParagraphs = description.split("\r\n\r\n");
+                        for (let j = 0; j < splitParagraphs.length; j++) {                   
+                             splitParagraphs[j] += "<br><br>"; // for each paragram add paragraphs
+                        } 
+                        // Then Pass the description into the view 
+                        // we use join() to remove the comma (,) after the split                     
+                        descriptionView.innerHTML = splitParagraphs.join("");
 
                         // create the image gallery
                         // for each image of the artwork
