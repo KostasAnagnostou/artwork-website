@@ -17,7 +17,7 @@ menuIcon.addEventListener('click', () => {
         nav.style.transition = 'transform 0.2s ease-out';
     }
 });
-
+  
 
 // Toggle Menu Icon ========================================
 let toggleIcon = document.querySelector('.menuIcon');
