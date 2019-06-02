@@ -751,6 +751,7 @@ input[type=text], input[type=email], select, textarea {
     grid-area:main-image-area;
     width:auto;
     height:400px;
+    max-width: 100%;
 }
 
 /* The Grid for the info (Details Page) */
@@ -813,6 +814,7 @@ input[type=text], input[type=email], select, textarea {
     grid-area:main-image-area;
     width:auto;
     height:400px;
+    max-width: 100%;
 }
 
 .info {
@@ -858,6 +860,7 @@ input[type=text], input[type=email], select, textarea {
         grid-area:main-image-area;
         width:auto;
         height:600px;
+        max-width: 100%;
     }
 
     .contact {

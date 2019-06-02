@@ -136,10 +136,13 @@
             <!-- The Social Media -->
             <div class="social">
                 <ul>
-                    <li><a href="https://www.facebook.com/maryam.safa.9803"><img class="icon-social" src="images/fb-icon.png"></a></li>
+                    <li><a href="https://www.facebook.com/maryam.safa.9803"><img class="icon-social"
+                                src="images/fb-icon.png"></a></li>
                     <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
-                    <li><a href="https://www.instagram.com/artbymaryamsafa/"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
-                    <li><a href="mailto:maryamsafa@outlook.dk"><img class="icon-social" src="images/email-icon.png"></a></li>
+                    <li><a href="https://www.instagram.com/artbymaryamsafa/"><img class="icon-social"
+                                src="images/instagram-icon1.png"></a></li>
+                    <li><a href="mailto:maryamsafa@outlook.dk"><img class="icon-social" src="images/email-icon.png"></a>
+                    </li>
                     <li><a href="tel:45-28-97-77-24"><img class="icon-social" src="images/phone-icon.png"></a></li>
                 </ul>
             </div>
@@ -152,7 +155,8 @@
     </div>
 
     <!--Button-go to top-->
-    <button onclick="topFunction()" id="btn-top" title="Go to top"><i class="fa fa-arrow-up fa-lg" aria-hidden="true"></i></button>
+    <button onclick="topFunction()" id="btn-top" title="Go to top"><i class="fa fa-arrow-up fa-lg"
+            aria-hidden="true"></i></button>
 
     <!-- ===== The Templates ===== -->
 
@@ -208,7 +212,7 @@
         document.addEventListener("DOMContentLoaded", function () {
 
             // The json end points for the API 
-            const ARTWORKS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks";
+            const ARTWORKS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/artworks?per_page=100";
             const VIDEOS_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/videos";
             const EXHIBITION_ENDPOINT = "http://konstantinos-anagnostou.com/wp/wp-json/wp/v2/exhibition";
 
@@ -227,7 +231,6 @@
             const exhibitionTemplate = document.querySelector("#exhibition-template").content;
             const exhibitionDescription = document.querySelector("#exhibition-description");
 
-
             // Show the loading indicator image (gif) 
             // using a helper custom function
             loadingIndicator("show");
@@ -245,7 +248,7 @@
 
             // The Function to display the data 
             // into the Home Page
-            function show(data) {  
+            function show(data) {
                 data.forEach(jsonObject => {
 
                     // If we have data, run the code
@@ -301,66 +304,7 @@
                                 featuredArtwork.appendChild(clone);
                             }
 
-                            // Create the arrows on the Slider
-                            const carouselSlides = document.querySelectorAll(".mySlides");                            
 
-                            // check if it's not 0
-                            if (carouselSlides.length > 1) {
-                                // Next & Previous Buttons on the Carousel
-                                let nextArrow = document.createElement("a");
-                                let previousArrow = document.createElement("a");
-                                nextArrow.classList.add("next");
-                                previousArrow.classList.add("prev");
-                                nextArrow.setAttribute("onclick", "plusSlides(1)");
-                                previousArrow.setAttribute("onclick", "plusSlides(-1)");
-                                nextArrow.innerHTML = "&#10095;";
-                                previousArrow.innerHTML = "&#10094;";
-                                slider.appendChild(previousArrow);
-                                slider.appendChild(nextArrow);
-
-                                // Create the dots/bullets on the slider for each artwork
-                                for (i = 0; i < carouselSlides.length; i++) {
-                                    let carouselDot = document.createElement("span");
-                                    carouselDot.classList.add("dot");
-                                    carouselDot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
-                                    sliderDots.appendChild(carouselDot);
-                                }
-
-                                // The code for the slider here from W3Schools with few changes
-                                // --> https://www.w3schools.com/howto/howto_js_slideshow.asp 
-                                let slideIndex = 1;
-                                showSlides(slideIndex);
-
-                                window.plusSlides = function (n) {
-                                    showSlides(slideIndex += n);
-                                }
-
-                                window.currentSlide = function (n) {
-                                    showSlides(slideIndex = n);
-                                }
-
-                                function showSlides(n) {
-                                    var j;
-                                    let slides = document.getElementsByClassName("mySlides");
-                                    let dots = document.getElementsByClassName("dot");
-                                    if (n > slides.length) { slideIndex = 1 }
-                                    if (n < 1) { slideIndex = slides.length }
-                                    for (j = 0; j < slides.length; j++) {
-                                        slides[j].style.display = "none";
-                                    }
-                                    for (j = 0; j < dots.length; j++) {
-                                        dots[j].className = dots[j].className.replace(" active", "");
-                                    }
-                                    if (typeof slides != undefined) {
-                                        slides[slideIndex - 1].style.display = "block";
-                                        dots[slideIndex - 1].className += " active";
-                                    }
-                                }
-
-                                // Hide the Loading Indicator
-                                // after the slider is ready
-                                loadingIndicator("hide");
-                            }
                         } // The code for the slider section ends here
 
                         // if it's a Video (Videos Section)
@@ -430,6 +374,67 @@
 
                     }
                 });
+
+                // Create the arrows on the Slider
+                const carouselSlides = document.querySelectorAll(".mySlides");
+
+                // check if it's not 0
+                if (carouselSlides.length > 1) {
+                    // Next & Previous Buttons on the Carousel
+                    let nextArrow = document.createElement("a");
+                    let previousArrow = document.createElement("a");
+                    nextArrow.classList.add("next");
+                    previousArrow.classList.add("prev");
+                    nextArrow.setAttribute("onclick", "plusSlides(1)");
+                    previousArrow.setAttribute("onclick", "plusSlides(-1)");
+                    nextArrow.innerHTML = "&#10095;";
+                    previousArrow.innerHTML = "&#10094;";
+                    slider.appendChild(previousArrow);
+                    slider.appendChild(nextArrow);
+
+                    // Create the dots/bullets on the slider for each artwork
+                    for (i = 0; i < carouselSlides.length; i++) {
+                        let carouselDot = document.createElement("span");
+                        carouselDot.classList.add("dot");
+                        carouselDot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
+                        sliderDots.appendChild(carouselDot);
+                    }
+
+                    // The code for the slider here from W3Schools with few changes
+                    // --> https://www.w3schools.com/howto/howto_js_slideshow.asp 
+                    let slideIndex = 1;
+                    showSlides(slideIndex);
+
+                    window.plusSlides = function (n) {
+                        showSlides(slideIndex += n);
+                    }
+
+                    window.currentSlide = function (n) {
+                        showSlides(slideIndex = n);
+                    }
+
+                    function showSlides(n) {
+                        var j;
+                        let slides = document.getElementsByClassName("mySlides");
+                        let dots = document.getElementsByClassName("dot");
+                        if (n > slides.length) { slideIndex = 1 }
+                        if (n < 1) { slideIndex = slides.length }
+                        for (j = 0; j < slides.length; j++) {
+                            slides[j].style.display = "none";
+                        }
+                        for (j = 0; j < dots.length; j++) {
+                            dots[j].className = dots[j].className.replace(" active", "");
+                        }
+                        if (typeof slides != undefined) {
+                            slides[slideIndex - 1].style.display = "block";
+                            dots[slideIndex - 1].className += " active";
+                        }
+                    }
+
+                    // Hide the Loading Indicator
+                    // after the slider is ready
+                    loadingIndicator("hide");
+                }
             }
 
             // A Function to Hide/Show the Loading Indicator
