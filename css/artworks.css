@@ -543,6 +543,78 @@ a:link, a:active, a:visited {
     padding-bottom:40px; 
 }
 
+/* The Style for the About Section & Paragraphs/Text */
+#about {
+    margin-bottom: 60px;
+}
+#about p {
+    max-width: 700px;
+    display: block;
+    margin-right: 16px;
+    margin-left: 16px;
+}
+/* The Style for the Image in About Page */
+.about-img {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+/* The Style for the Youtbe Video Inside About */
+.youtube-about{
+    max-width:700px;    
+}
+/* The Style for the Form */
+#form {
+    border-radius: 5px;
+    padding: 4px;
+    max-width:100%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:80px;
+    background-color: var(--color-white);
+    border: 10px solid var(--secondary-color);
+  }
+  #form p {
+    text-align:center;
+  }
+#form h3 {
+    text-align:center;
+    color:var(--secondary-color);
+}
+input[type=text], input[type=email], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;    
+    font-family: var(--fonts-montserrat);
+  }  
+  input[type=submit] {
+    background-color: var(--secondary-color);
+    color: var(--color-white);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight:bold;    
+    font-family: var(--fonts-montserrat);
+  }  
+  input[type=submit]:hover {
+    color: var(--secondary-color);
+    background-color: #f9f9f9;
+  }
+  
+  textarea{
+    height:180px;
+    font-family: var(--fonts-montserrat);
+  }
+
+
 
 /* =========  Media Queries for DESKTOP  ========== */
 @media screen and (min-width: 600px) {
@@ -753,6 +825,28 @@ a:link, a:active, a:visited {
     margin-left:0px;
     line-height:4;
 }
+
+/* the Container for the Contact FORM */
+#form {
+    border-radius: 5px;
+    padding: 4px;
+    max-width:50%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: var(--color-white);
+    border: 10px solid var(--secondary-color);
+  }
+
+  /* The style for the Paragraphs in About Page */
+  #about p {
+    max-width: 700px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
 }
 
 /* =========  Media Queries for DESKTOP  ========== */
@@ -770,6 +864,14 @@ a:link, a:active, a:visited {
         margin-left: 10px;
         line-height:0;
     }
+
+    /* The Style for the Image in About Page */
+.about-img {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
 }
 
 
