@@ -159,7 +159,6 @@
             aria-hidden="true"></i></button>
 
     <!-- ===== The Templates ===== -->
-
     <!-- The Template for the Slider Item -->
     <template id="carousel-item">
         <div class="mySlides">
@@ -241,6 +240,13 @@
             fetchData(VIDEOS_ENDPOINT);
             fetchData(EXHIBITION_ENDPOINT);
 
+            // we are using setTimeout() Method to run the 
+            // following function with a delay of 1.5 seconds
+            setTimeout(function(){ 
+                // Set up the Slider's Dots and Arrows
+                setupSliderDotsArrows();                
+                }, 1500); 
+
             // The Function to Fetch the json Endpoints
             function fetchData(fetchURL) {
                 fetch(fetchURL).then(e => e.json()).then(data => show(data));
@@ -320,7 +326,6 @@
                             // More here: --> https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
                             let searchParams = new URLSearchParams(youtubeURL);
                             let videoID = searchParams.get("https://www.youtube.com/watch?v");
-                            console.log(videoID);
                             let videoFinalUrl = YOUTUBE_VIDEO_URL + videoID; //searchParams returns the id (v=) from the url: lQGDn1li7hs
 
                             // clone the template for the Video
@@ -368,18 +373,38 @@
                                 // Pass the description into the Exhibition Description Paragraph
                                 exhibitionDescription.textContent = description;
                             }
-
                         }
-
-
                     }
                 });
+            }
 
+            // A Function to Hide/Show the Loading Indicator
+            function loadingIndicator(display) {
+                // Hide All the Main and the footer when loading
+                const mainLoading = document.querySelector("#loading-main");
+                const footerLoading = document.querySelector(".footer");
+                const loadingIndicator = document.querySelector("#loading");
+
+                if (display == "show") {
+                    mainLoading.style.display = "none";
+                    footerLoading.style.display = "none";
+                    loadingIndicator.style.display = "block";
+                } else {
+                    mainLoading.style.display = "block";
+                    footerLoading.style.display = "block";
+                    loadingIndicator.style.display = "none";
+                }
+            }
+
+            // With this function we are setting up
+            // the doots and the Arrows on the slider
+            function setupSliderDotsArrows() {
                 // Create the arrows on the Slider
                 const carouselSlides = document.querySelectorAll(".mySlides");
 
                 // check if it's not 0
                 if (carouselSlides.length > 1) {
+
                     // Next & Previous Buttons on the Carousel
                     let nextArrow = document.createElement("a");
                     let previousArrow = document.createElement("a");
@@ -394,6 +419,7 @@
 
                     // Create the dots/bullets on the slider for each artwork
                     for (i = 0; i < carouselSlides.length; i++) {
+                        console.log(carouselSlides.length);
                         let carouselDot = document.createElement("span");
                         carouselDot.classList.add("dot");
                         carouselDot.setAttribute("onclick", "currentSlide(" + (i + 1) + ")");
@@ -437,23 +463,7 @@
                 }
             }
 
-            // A Function to Hide/Show the Loading Indicator
-            function loadingIndicator(display) {
-                // Hide All the Main and the footer when loading
-                const mainLoading = document.querySelector("#loading-main");
-                const footerLoading = document.querySelector(".footer");
-                const loadingIndicator = document.querySelector("#loading");
 
-                if (display == "show") {
-                    mainLoading.style.display = "none";
-                    footerLoading.style.display = "none";
-                    loadingIndicator.style.display = "block";
-                } else {
-                    mainLoading.style.display = "block";
-                    footerLoading.style.display = "block";
-                    loadingIndicator.style.display = "none";
-                }
-            }
         });
     </script>
 </body>
