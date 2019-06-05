@@ -260,7 +260,7 @@
                     // If we have data, run the code
                     if (jsonObject) {
 
-                        // If it's artworks (Slider Section)
+                        // If it's artworks (Slider & featured Artworks Section)
                         if (jsonObject.type === "artworks") {
 
                             // Store the data for each artwork
@@ -356,7 +356,7 @@
                                 // clone the template for the Exhibition Gallery
                                 const clone = exhibitionTemplate.cloneNode(true);
 
-                                // get a Reference from the views (iframe & p elements)
+                                // get a Reference from the views (HTML elements)
                                 const exhibitionImage = clone.querySelector(".exhibition-image");
                                 const thumbnail = clone.querySelector(".thumbnail");
 
@@ -397,7 +397,7 @@
             }
 
             // With this function we are setting up
-            // the doots and the Arrows on the slider
+            // the dots and the Arrows on the slider
             function setupSliderDotsArrows() {
                 // Create the arrows on the Slider
                 const carouselSlides = document.querySelectorAll(".mySlides");

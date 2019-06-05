@@ -18,6 +18,14 @@
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
 
+    <style>
+        #sent-message {
+            background-color:green;
+            color:#fff;
+            display:none;
+        }
+    
+    </style>
 </head>
 
 <!-- The body of the Contact Page -->
@@ -61,51 +69,64 @@
                     <li><a href="about.html">ABOUT ME</a></li>
                 </ul>
             </div>
-        </header>       
+        </header>
 
         <!-- The Main Section Here -->
         <main id="loading-main">
 
-           <!-- The Contact Form Section -->
-           <section id="form">
+            <!-- The Contact Form Section -->
+            <section id="form">
                 <h3>Contact Form</h3>
                 <form method="post">
-                    
-                  <input type="text" id="fname" name="firstname" placeholder="Full Name">                  
-            
-                  <input type="email" id="email" name="lastname" placeholder="Email">
 
-                  <textarea id="subject" name="subject" placeholder="Your Message Here"></textarea>
-              
-                 <p><input type="submit" value="Send"></p>
+                    <input type="text" id="fname" name="firstname" placeholder="Full Name">
+
+                    <input type="email" id="email" name="lastname" placeholder="Email">
+
+                    <textarea id="subject" name="subject" placeholder="Your Message Here"></textarea>
+
+                    <p><input id="send" type="submit" value="Send"></p>                   
+            
                 </form>
+
+                
             </section>
+
+            <!-- The COnfirmation for the user -->
+          
+                <!-- <p id="sent-message">
+                     Your Message has been sent successfully! We will get back to you as soon as possible.
+                </p>             -->
 
         </main>
 
         <!-- Footer -->
+
         <footer class="footer">
 
-            <!-- The Logo on the Footer -->
-            <img id="footer-logo" src="images/logo_maryam_safa.png" alt="The logo of the website">
-
-            <!-- The Social Media -->
-            <div class="social">
-                <ul>
-                    <li><a href="#"><img class="icon-social" src="images/fb-icon.png"></a></li>
-                    <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
-                    <li><a href="#"><img class="icon-social" src="images/instagram-icon1.png"></a></li>
-                    <li><a href="#"><img class="icon-social" src="images/email-icon.png"></a></li>
-                    <li><a href="#"><img class="icon-social" src="images/phone-icon.png"></a></li>
-                </ul>
-            </div>
-
-            <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
-
-        </footer>
-
-        <!-- END OF FOOTER -->
-    </div>
+                <!-- The Logo on the Footer -->
+                <img id="footer-logo" src="images/logo_maryam_safa.png" alt="The logo of the website">
+    
+                <!-- The Social Media -->
+                <div class="social">
+                    <ul>
+                        <li><a href="https://www.facebook.com/maryam.safa.9803"><img class="icon-social"
+                                    src="images/fb-icon.png"></a></li>
+                        <li><a href="#"><img class="icon-social" src="images/youtube-icon1.png"></a></li>
+                        <li><a href="https://www.instagram.com/artbymaryamsafa/"><img class="icon-social"
+                                    src="images/instagram-icon1.png"></a></li>
+                        <li><a href="mailto:maryamsafa@outlook.dk"><img class="icon-social" src="images/email-icon.png"></a>
+                        </li>
+                        <li><a href="tel:45-28-97-77-24"><img class="icon-social" src="images/phone-icon.png"></a></li>
+                    </ul>
+                </div>
+    
+                <p class="copyright">&copy;2019 - Maryam Safa - All rights reserved</p>
+    
+            </footer>
+    
+            <!-- END OF FOOTER -->
+        </div>
 
     <!--Button-go to top-->
     <button onclick="topFunction()" id="btn-top" title="Go to top"><i class="fa fa-arrow-up fa-lg"
@@ -115,7 +136,46 @@
     <script src="js/menu.js"></script>
     <!-- jQuery 3.3.1 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   
+
+    <script>
+
+        // Load first the DOM
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Get a reference from the inputs
+            const nameField = document.querySelector("#fname");
+            const emailField = document.querySelector("#email");
+            const messageField = document.querySelector("#subject");
+
+            
+            $("#send").click(function () {
+
+            // Take the input from the user
+            let name = nameField.value.toString();
+            let email = emailField.value.toString();
+            let message = messageField.value.toString();            
+
+            // If it's not empty
+            if (name != "" && email !="" && message !="") {
+
+            // Pass data to php file using jquery ajax post
+            //--> https://stackoverflow.com/questions/18697034/how-to-pass-parameters-in-ajax-post
+                $.post('form.php',{ 
+                name: name, 
+                email:email,
+                message:message, 
+                contentType: 'text/plain; charset=UTF-8',
+                }, 
+                    function(returnedData){
+                                                                    
+                });               
+            }           
+            });  
+
+            
+    });
+    </script>
+
 </body>
 
 </html>
